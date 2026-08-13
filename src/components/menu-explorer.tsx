@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { categories, formatPrice, menuItems, type MenuCategory } from "@/lib/menu";
 import { useOrder } from "./order-provider";
@@ -10,7 +10,6 @@ export function MenuExplorer() {
   const [category, setCategory] = useState<MenuCategory>("coffee");
   const [justAdded, setJustAdded] = useState<string | null>(null);
   const { addItem, count, total, openCart } = useOrder();
-  const reduced = useReducedMotion();
   const items = useMemo(() => menuItems.filter((item) => item.category === category), [category]);
 
   function handleAdd(id: string) {
@@ -27,7 +26,7 @@ export function MenuExplorer() {
         </div>
       </div>
       <AnimatePresence mode="wait">
-        <motion.div key={category} className="grid gap-3 py-8 md:grid-cols-2" initial={reduced ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: .2 }}>
+        <motion.div key={category} className="grid gap-3 py-8 md:grid-cols-2" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: .2 }}>
           {items.map((item, index) => (
             <article key={item.id} className={`group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[28px] border border-ink/14 p-5 sm:p-7 ${item.featured ? "bg-mist" : "bg-white/32"}`}>
               <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,var(--cobalt)_0_49%,var(--oyster)_49%_51%,var(--persimmon)_51%)] opacity-0 transition-opacity group-hover:opacity-100" />

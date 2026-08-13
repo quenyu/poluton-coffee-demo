@@ -2,6 +2,9 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 test("core navigation, menu and demo preorder work", async ({ page }) => {
+  const runtimeErrors: string[] = [];
+  page.on("console", (message) => { if (message.type() === "error") runtimeErrors.push(message.text()); });
+  page.on("pageerror", (error) => runtimeErrors.push(error.message));
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("НЕ ДЕЛИТСЯ");
 
@@ -19,6 +22,7 @@ test("core navigation, menu and demo preorder work", async ({ page }) => {
   await page.getByLabel("Телефон").fill("+7 999 123-45-67");
   await page.getByRole("button", { name: /Подтвердить/ }).click();
   await expect(page.getByRole("heading", { name: /Заказ собран, но не отправлен/ })).toBeVisible();
+  expect(runtimeErrors).toEqual([]);
 });
 
 for (const route of ["/", "/menu", "/visit", "/preorder"]) {
