@@ -30,12 +30,11 @@ npm run dev
 Production и проверки:
 
 ```bash
-npm run qa
-npm run test:e2e
-npm run test:performance
+npm run qa:full
 ```
 
 Для Playwright можно передать локальный Chromium через `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`.
+Проверки lint, types, unit, production build, responsive/E2E, axe accessibility и performance также запускаются в GitHub Actions для pull request и каждого push в `main`.
 
 ## Материалы
 

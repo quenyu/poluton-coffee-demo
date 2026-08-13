@@ -11,7 +11,9 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "test:performance": "node scripts/performance-audit.mjs",
-    "qa": "npm run lint && npm run typecheck && npm run test && npm run build"
+    "qa": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "qa:browser": "npm run test:e2e && npm run test:performance",
+    "qa:full": "npm run qa && npm run qa:browser"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.3.0",
