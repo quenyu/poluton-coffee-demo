@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# local environment
+.env*
+!.env.example
+
+# deployment
+.vercel/
+
+# test output
+playwright-report/
+test-results/
+coverage/
+
+# misc
+.DS_Store
+*.log
