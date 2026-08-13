@@ -1,0 +1,29 @@
+{
+  "environment": "local production server, unthrottled lab run",
+  "results": [
+    {
+      "viewport": "mobile-390",
+      "firstContentfulPaintMs": 148,
+      "largestContentfulPaintMs": 148,
+      "cumulativeLayoutShift": 0.0012,
+      "domContentLoadedMs": 144,
+      "loadMs": 198,
+      "transferredKb": 418,
+      "jsTransferredKb": 202,
+      "resourceCount": 25,
+      "realtime3d": "fallback"
+    },
+    {
+      "viewport": "desktop-1440",
+      "firstContentfulPaintMs": 184,
+      "largestContentfulPaintMs": 360,
+      "cumulativeLayoutShift": 0.0007,
+      "domContentLoadedMs": 169,
+      "loadMs": 257,
+      "transferredKb": 728,
+      "jsTransferredKb": 433,
+      "resourceCount": 27,
+      "realtime3d": "active"
+    }
+  ]
+}

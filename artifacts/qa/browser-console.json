@@ -1,0 +1,72 @@
+[
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "[.WebGL-0x234c00143a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "[.WebGL-0x234c00143a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "[.WebGL-0x234c00143a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "[.WebGL-0x234c00143a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  },
+  {
+    "route": "/",
+    "type": "warning",
+    "text": "THREE.WebGLShadowMap: PCFSoftShadowMap has been deprecated. Using PCFShadowMap instead."
+  }
+]
