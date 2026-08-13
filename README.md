@@ -24,6 +24,7 @@ Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Motion · React Three 
 
 ```bash
 npm ci
+npm run setup:browsers
 npm run dev
 ```
 
@@ -34,7 +35,9 @@ npm run qa:full
 ```
 
 Для Playwright можно передать локальный Chromium через `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`.
-Проверки lint, types, unit, production build, responsive/E2E, axe accessibility и performance также запускаются в GitHub Actions для pull request и каждого push в `main`.
+`qa:full` использует production build и пишет текущий performance-отчёт во временную директорию, поэтому не изменяет tracked portfolio artifacts. Осознанно обновить сохранённый snapshot можно командой `npm run test:performance:update`.
+
+Проверки lint, types, unit, production build, responsive/E2E, axe accessibility и performance budgets также запускаются в GitHub Actions для pull request и каждого push в `main`.
 
 ## Материалы
 

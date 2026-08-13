@@ -18,7 +18,7 @@ export default defineConfig({
     { name: "mobile", use: { viewport: { width: 390, height: 844 }, hasTouch: true } },
   ],
   webServer: {
-    command: "npm run dev",
+    command: "./node_modules/.bin/next start --hostname 127.0.0.1 --port 3000",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: true,
     timeout: 120_000,

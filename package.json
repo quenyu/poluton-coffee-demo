@@ -6,13 +6,16 @@
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
     "start": "next start",
+    "setup:browsers": "playwright install chromium",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "playwright test",
+    "test:e2e": "npm run build && playwright test",
+    "test:e2e:built": "playwright test",
     "test:performance": "node scripts/performance-audit.mjs",
+    "test:performance:update": "PERFORMANCE_REPORT_PATH=artifacts/qa/performance.json node scripts/performance-audit.mjs",
     "qa": "npm run lint && npm run typecheck && npm run test && npm run build",
-    "qa:browser": "npm run test:e2e && npm run test:performance",
+    "qa:browser": "npm run test:e2e:built && npm run test:performance",
     "qa:full": "npm run qa && npm run qa:browser"
   },
   "dependencies": {

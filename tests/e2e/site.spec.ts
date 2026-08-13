@@ -1,5 +1,14 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+async function addPolutonAndOpenPreorder(page: Page) {
+  await page.getByRole("tab", { name: "Авторские" }).click();
+  await expect(page.getByText("Полутон", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: /Добавить Полутон/ }).click();
+  await page.locator('button[aria-label="Открыть заказ, позиций: 1"]:visible').click();
+  await page.getByRole("link", { name: /Выбрать время/ }).click();
+  await expect(page).toHaveURL(/\/preorder$/);
+}
 
 test("core navigation, menu and demo preorder work", async ({ page }) => {
   const runtimeErrors: string[] = [];
@@ -10,12 +19,7 @@ test("core navigation, menu and demo preorder work", async ({ page }) => {
 
   await page.getByRole("link", { name: "Заказать к выдаче" }).first().click();
   await expect(page).toHaveURL(/\/menu$/);
-  await page.getByRole("tab", { name: "Авторские" }).click();
-  await expect(page.getByText("Полутон", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: /Добавить Полутон/ }).click();
-  await page.locator('button[aria-label="Открыть заказ, позиций: 1"]:visible').click();
-  await page.getByRole("link", { name: /Выбрать время/ }).click();
-  await expect(page).toHaveURL(/\/preorder$/);
+  await addPolutonAndOpenPreorder(page);
 
   await page.getByRole("button", { name: "Через 20 минут" }).click();
   await page.getByLabel("Имя").fill("Мия");
@@ -23,6 +27,31 @@ test("core navigation, menu and demo preorder work", async ({ page }) => {
   await page.getByRole("button", { name: /Подтвердить/ }).click();
   await expect(page.getByRole("heading", { name: /Заказ собран, но не отправлен/ })).toBeVisible();
   expect(runtimeErrors).toEqual([]);
+});
+
+test("preorder validation and demo error preserve a retryable order", async ({ page }) => {
+  await page.goto("/menu");
+  await addPolutonAndOpenPreorder(page);
+
+  await page.getByRole("button", { name: /Подтвердить/ }).click();
+  await expect(page.getByRole("button", { name: "Через 10 минут" })).toBeFocused();
+  await expect(page.getByText("Выберите время выдачи")).toBeVisible();
+  await expect(page.getByText("Укажите имя — минимум 2 символа")).toBeVisible();
+  await expect(page.getByText("Введите номер телефона полностью")).toBeVisible();
+  await expect(page.getByLabel("Имя")).toHaveAttribute("aria-invalid", "true");
+  await expect(page.getByLabel("Телефон")).toHaveAttribute("aria-invalid", "true");
+
+  await page.getByRole("button", { name: "Через 20 минут" }).click();
+  await page.getByLabel("Имя").fill("Мия");
+  await page.getByLabel("Телефон").fill("+7 999 000-00-00");
+  await page.getByRole("button", { name: /Подтвердить/ }).click();
+  await expect(page.getByRole("alert").filter({ hasText: "Не получилось подтвердить demo-заказ" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Полутон" })).toBeVisible();
+
+  await page.getByLabel("Телефон").fill("+7 999 123-45-67");
+  await expect(page.getByText("Не получилось подтвердить demo-заказ")).toBeHidden();
+  await page.getByRole("button", { name: /Подтвердить/ }).click();
+  await expect(page.getByRole("heading", { name: /Заказ собран, но не отправлен/ })).toBeVisible();
 });
 
 for (const route of ["/", "/menu", "/visit", "/preorder"]) {

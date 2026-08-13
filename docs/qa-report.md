@@ -37,6 +37,8 @@
 
 Локальные lab timings сохраняются в `artifacts/qa/performance.json`. Они нужны для regression-контроля и не выдаются за field data реальных пользователей.
 
+Автоматический audit падает при превышении budget: LCP 2.5 s, FCP 1.5 s, CLS 0.1, transfer 900/1200 KB и JS 300/600 KB для mobile/desktop. Он также проверяет обязательный static fallback на mobile и realtime 3D на desktop. Обычный `qa:full` пишет отчёт в системную временную директорию; tracked snapshot обновляется только явной командой `npm run test:performance:update`.
+
 | Unthrottled local production run | Mobile 390 | Desktop 1440 |
 |---|---:|---:|
 | FCP | 148 ms | 184 ms |
